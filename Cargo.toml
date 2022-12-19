@@ -8,19 +8,26 @@ channel = "stable"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix-http = "2.2.2"
-actix-web = "4.1.0"
+actix-http = { version = "3.2.2", features = [ "__compress", "actix-tls", "base64", "brotli", "compress-brotli", "compress-gzip", "compress-zstd", "flate2", "h2", "http2", "local-channel", "openssl", "rand", "rustls", "sha1", "ws", "zstd" ] }
+actix-web = "4.2.1"
 async-std = "1.12.0"
-axum = "0.5.14"
-jsonwebtoken = "8.1.1"
-mongodb = "2.3.0"
-oauth2 = "4.2.3"
-redis = "0.21.5"
-regex = "1.6.0"
-serde = "1.0.140"
-serde_json = "1.0.82"
-sqlx = { version = "0.6.0", features = ["runtime-async-std-native-tls"] }
-tokio = "1.20.1"
-tokio-rustls = "0.13.0"
-tracing = "0.1.35"
-warp = "0.3.2"
+axum = { version = "0.6.1", features = [ "form", "http1", "http2", "json", "macros", "matched-path", "multipart", "original-uri", "query", "tokio", "tower-log", "ws" ] }
+inflate = "0.4.5"
+jsonwebtoken = "8.2.0"
+mongodb = "2.3.1"
+oauth2 = "4.3.0"
+redis = "0.22.1"
+regex = "1.7.0"
+reqwest = { version = "0.11.13", features = [ "__internal_proxy_sys_no_cache", "__rustls", "async-compression", "blocking", "brotli", "cookie_crate", "cookie_store", "cookies", "deflate", "gzip", "hyper-rustls", "json", "mime_guess", "multipart", "native-tls", "native-tls-alpn", "native-tls-vendored", "proc-macro-hack", "rustls", "rustls-native-certs", "rustls-pemfile", "rustls-tls", "rustls-tls-manual-roots", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "serde_json", "socks", "stream", "tokio-rustls", "tokio-socks", "tokio-util", "trust-dns", "trust-dns-resolver", "webpki-roots" ] }
+serde = "1.0.151"
+serde_json = "1.0.91"
+sqlx = { version = "0.6.2", features = ["runtime-async-std-native-tls"] }
+tokio = "1.23.0"
+tokio-rustls = "0.23.4"
+tracing = "0.1.37"
+warp = "0.3.3"
+
+[dev-dependencies]
+criterion = "0.4.0"
+
+
