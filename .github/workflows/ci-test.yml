@@ -1,0 +1,71 @@
+name: Service Example
+on: push
+
+jobs:
+  runner-job:
+    runs-on: ubuntu-latest
+
+    container: 
+      image: rust
+
+    # Service containers to run with `runner-job`
+    services:
+      spicedb:
+        image: authzed/spicedb:v1.21.0
+        env:
+          SPICEDB_HTTP_ENABLED: true
+          SPICEDB_GRPC_PRESHARED_KEY: spicedb
+          SPICEDB_DATASTORE_ENGINE: memory
+        options: >-
+          --health-cmd spicedb head
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          --entrypoint spicedb serve-testing
+        ports:
+          - 50051:50051
+          - 8444:8443
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # - name: check spicedb from service container
+      #   run: |
+      #     curl http://spicedb:8444/healthz > healthz.log
+      #     cat healthz.log
+
+      # - uses: "authzed/action-spicedb@v1"
+      #   env:
+      #     SPICEDB_HTTP_ENABLED: true
+      #   with:
+      #     version: "latest"
+
+      # - name: isntall grpcurl
+      #   run: |
+      #     wget -q https://github.com/authzed/spicedb/releases/download/v1.21.0/spicedb_1.21.0_linux_amd64.deb
+      #     dpkg -i spicedb_1.21.0_linux_amd64.deb
+
+      # - name: Setup spicedb
+      #   env:
+      #     SPICEDB_HTTP_ENABLED: true
+      #     SPICEDB_GRPC_PRESHARED_KEY: spicedb
+      #     SPICEDB_DATASTORE_ENGINE: memory
+      #   run: |
+      #     wget -q https://github.com/authzed/spicedb/releases/download/v1.21.0/spicedb_1.21.0_linux_amd64.deb
+      #     dpkg -i spicedb_1.21.0_linux_amd64.deb
+      #     spicedb serve --http-enabled true &
+      #     sleep 5
+        
+      - name: check spicedb from local setup
+        run: |
+          curl --retry 5 --retry-delay 3 --retry-connrefused -s -v http://localhost:8443/healthz
+
+      - name: Write spicedb schema
+        run: |
+          curl \
+            -H "Authorization: Bearer spicedb" \
+            --data '{"schema": "definition user {}"}' \
+            -X POST \
+            http://localhost:8443/v1/schema/write
+        
