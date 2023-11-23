@@ -8,26 +8,26 @@ channel = "stable"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix-http = { version = "3.2.2", features = [ "__compress", "actix-tls", "base64", "brotli", "compress-brotli", "compress-gzip", "compress-zstd", "flate2", "h2", "http2", "local-channel", "openssl", "rand", "rustls", "sha1", "ws", "zstd" ] }
-actix-web = "4.2.1"
+actix-http = { version = "3.4.0", features = [ "__compress", "actix-tls", "base64", "brotli", "compress-brotli", "compress-gzip", "compress-zstd", "flate2", "h2", "http2", "local-channel", "openssl", "rand", "rustls", "sha1", "ws", "zstd" ] }
+actix-web = "4.4.0"
 async-std = "1.12.0"
-axum = { version = "0.6.1", features = [ "form", "http1", "http2", "json", "macros", "matched-path", "multipart", "original-uri", "query", "tokio", "tower-log", "ws" ] }
+axum = { version = "0.6.20", features = [ "form", "http1", "http2", "json", "macros", "matched-path", "multipart", "original-uri", "query", "tokio", "tower-log", "ws" ] }
 inflate = "0.4.5"
-jsonwebtoken = "8.2.0"
-mongodb = "2.3.1"
-oauth2 = "4.3.0"
-redis = "0.22.1"
-regex = "1.7.0"
-reqwest = { version = "0.11.13", features = [ "__internal_proxy_sys_no_cache", "__rustls", "async-compression", "blocking", "brotli", "cookie_crate", "cookie_store", "cookies", "deflate", "gzip", "hyper-rustls", "json", "mime_guess", "multipart", "native-tls", "native-tls-alpn", "native-tls-vendored", "proc-macro-hack", "rustls", "rustls-native-certs", "rustls-pemfile", "rustls-tls", "rustls-tls-manual-roots", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "serde_json", "socks", "stream", "tokio-rustls", "tokio-socks", "tokio-util", "trust-dns", "trust-dns-resolver", "webpki-roots" ] }
-serde = "1.0.151"
-serde_json = "1.0.91"
-sqlx = { version = "0.6.2", features = ["runtime-async-std-native-tls"] }
-tokio = "1.24.2"
-tokio-rustls = "0.23.4"
-tracing = "0.1.37"
-warp = "0.3.3"
+jsonwebtoken = "9.1.0"
+mongodb = "2.7.1"
+oauth2 = "4.4.2"
+redis = "0.23.3"
+regex = "1.10.2"
+reqwest = { version = "0.11.22", features = [ "__internal_proxy_sys_no_cache", "__rustls", "async-compression", "blocking", "brotli", "cookie_crate", "cookie_store", "cookies", "deflate", "gzip", "hyper-rustls", "json", "mime_guess", "multipart", "native-tls", "native-tls-alpn", "native-tls-vendored", "rustls", "rustls-native-certs", "rustls-pemfile", "rustls-tls", "rustls-tls-manual-roots", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "serde_json", "socks", "stream", "tokio-rustls", "tokio-socks", "tokio-util", "trust-dns", "trust-dns-resolver", "webpki-roots" ] }
+serde = "1.0.193"
+serde_json = "1.0.108"
+sqlx = { version = "0.7.3", features = ["runtime-async-std-native-tls"] }
+tokio = "1.34.0"
+tokio-rustls = "0.24.1"
+tracing = "0.1.40"
+warp = "0.3.6"
 
 [dev-dependencies]
-criterion = "0.4.0"
+criterion = "0.5.1"
 
 
